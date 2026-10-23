@@ -1,0 +1,8 @@
+[
+  {"tenantId":"TenantA","reportName":"MonthlyReport","scheduleTime":"2026-01-01T00:00:00","attemptNumber":1,"status":"FAILED","errorCode":"UPSTREAM_TIMEOUT","executionTime":"2026-01-01T00:02:00Z"},
+  {"tenantId":"TenantA","reportName":"MonthlyReport","scheduleTime":"2026-01-01T00:00:00","attemptNumber":2,"status":"FAILED","errorCode":"UPSTREAM_TIMEOUT","executionTime":"2026-01-01T00:04:00Z"},
+  {"tenantId":"TenantB","reportName":"DailyReport","scheduleTime":"2026-01-02T00:00:00","attemptNumber":1,"status":"FAILED","errorCode":"TRANSIENT","executionTime":"2026-01-02T00:01:00Z"},
+  {"tenantId":"TenantB","reportName":"DailyReport","scheduleTime":"2026-01-02T00:00:00","attemptNumber":2,"status":"SUCCESS","executionTime":"2026-01-02T00:03:00Z"},
+  {"tenantId":"TenantC","reportName":"WeeklyReport","scheduleTime":"2026-01-04T00:00:00","attemptNumber":1,"status":"TIMEOUT","errorCode":"GATEWAY_TIMEOUT","executionTime":"2026-01-04T00:05:00Z"},
+  {"tenantId":"TenantD","reportName":"QuarterlyReport","scheduleTime":"2026-01-05T00:00:00","attemptNumber":1,"status":"PROVIDER_PENDING","executionTime":"2026-01-05T00:01:00Z"}
+]

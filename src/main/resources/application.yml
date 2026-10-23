@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: meridian-report-reliability
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/meridian?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:meridian}
+    password: ${DB_PASSWORD:meridian_local}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+      continue-on-error: false
+  jackson:
+    default-property-inclusion: non_null
+server:
+  port: ${PORT:8080}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+info:
+  app:
+    name: Meridian Report Reliability Platform
+    version: 1.0.0
+meridian:
+  retry:
+    max-retries: ${MAX_RETRIES:3}
+    persistence-attempts: 3
+    persistence-backoff-ms: 100

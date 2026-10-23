@@ -1,0 +1,15 @@
+.git
+.github
+.azure
+.idea
+.vscode
+*.iml
+.env
+.env.*
+target
+**/target
+*.log
+README.md
+SOLUTION_DESIGN.md
+DEVOPS_DEPLOYMENT.md
+samples
