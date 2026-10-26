@@ -1,0 +1,103 @@
+:root {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #182230;
+  background: #f5f7fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 360px; min-height: 100vh; }
+button, input { font: inherit; }
+
+.app-shell { min-height: 100vh; background: #f5f7fb; }
+.desktop-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 1200; }
+.sidebar {
+  height: 100%;
+  width: 248px;
+  padding: 24px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  color: #bdc7d7;
+  background: #111b2d;
+}
+.brand { display: flex; align-items: center; gap: 11px; padding: 1px 8px 35px; }
+.brand-mark { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 11px; color: #fff; background: linear-gradient(145deg, #6481ff, #4056ce); }
+.brand-caption { color: #718096; font-size: 9px; font-weight: 700; letter-spacing: .12em; margin-top: 2px; }
+.nav-caption { padding: 0 12px 10px; color: #6d7a90; font-size: 10px; letter-spacing: .12em; font-weight: 700; }
+.sidebar .nav-item { min-height: 44px; margin: 3px 0; padding: 0 12px; border-radius: 9px; color: #9eabc0; }
+.sidebar .nav-item .MuiListItemIcon-root { min-width: 35px; color: #8190a8; }
+.sidebar .nav-item .MuiListItemText-primary { font-size: 13px; font-weight: 550; }
+.sidebar .nav-item.active { background: rgba(91, 119, 255, .17); color: #fff; }
+.sidebar .nav-item.active .MuiListItemIcon-root { color: #8ea2ff; }
+.sidebar-bottom { margin-top: auto; }
+.sidebar-note { display: flex; align-items: flex-start; gap: 9px; margin: 0 4px 18px; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 9px; color: #8e9bb0; }
+.sidebar-note svg { flex: 0 0 auto; color: #88a0ff; }
+.profile { display: flex; align-items: center; gap: 10px; padding: 14px 5px 2px; }
+.main-column { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar { border-bottom: 1px solid #e9edf3; background: rgba(255,255,255,.94) !important; backdrop-filter: blur(12px); }
+.toolbar { min-height: 68px !important; padding: 0 32px !important; }
+.breadcrumb, .topbar-actions { display: flex; align-items: center; gap: 12px; }
+.topbar-actions { margin-left: auto; }
+.page-content { width: 100%; max-width: 1600px; margin: 0 auto; padding: 32px; flex: 1; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.chart-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(310px, 1fr); gap: 16px; }
+.bottom-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 16px; align-items: stretch; }
+.section-heading, .table-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.donut-layout { display: grid; grid-template-columns: minmax(170px, 1fr) minmax(135px, .8fr); align-items: center; gap: 8px; }
+.legend-list { padding-right: 6px; }
+.legend-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+.table-header { padding: 21px 24px; }
+.responsive-table { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; white-space: nowrap; }
+.data-table th { height: 41px; padding: 0 14px; border-top: 1px solid #edf0f5; border-bottom: 1px solid #edf0f5; color: #8b96a7; background: #fafbfc; font-size: 9px; font-weight: 700; letter-spacing: .08em; }
+.data-table th:first-child, .data-table td:first-child { padding-left: 24px; }
+.data-table td { height: 62px; padding: 8px 14px; border-bottom: 1px solid #f0f2f6; font-size: 12px; }
+.data-table tbody tr:last-child td { border-bottom: 0; }
+.data-table td strong { display: block; color: #273244; font-size: 12px; font-weight: 650; }
+.data-table td small { display: block; margin-top: 4px; color: #8a95a6; font-size: 10px; }
+.muted-cell { color: #778395 !important; }
+.status-text { padding: 4px 7px; color: #576477; border-radius: 5px; background: #f4f6f9; font-size: 10px; font-weight: 600; }
+.empty-cell { text-align: center; color: #8490a4; }
+.attention-item { display: flex; align-items: center; gap: 10px; }
+.attention-icon { display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 9px; color: #d64c55; background: #fff0f0; }
+.all-clear { min-height: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; color: #159570; text-align: center; }
+.all-clear p { color: #697586; }
+.dashboard-note { display: flex; align-items: center; gap: 9px; padding: 13px 15px; border: 1px solid #e6eaff; border-radius: 9px; color: #5369c3; background: #f2f4ff; }
+.dashboard-note .MuiTypography-root { color: #65739f; }
+.empty-chart { height: 100%; display: grid; place-items: center; color: #8994a4; font-size: 13px; }
+.footer { min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; border-top: 1px solid #e9edf3; color: #8a95a6; }
+.footer .MuiTypography-root { font-size: 10px; }
+.health-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; }
+.health-icon.up { color: #159570; background: #e9f8f2; }
+.health-icon.down { color: #d64c55; background: #fff0f0; }
+.component-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; }
+.grid-empty { display: grid; place-items: center; min-height: 250px; color: #8792a4; }
+.text-action { border: 0; padding: 0; background: none; color: inherit; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 1100px) {
+  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chart-grid, .bottom-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .toolbar { padding: 0 14px !important; }
+  .breadcrumb { gap: 7px; }
+  .topbar-actions { gap: 4px; }
+  .page-content { padding: 22px 16px; }
+  .metric-grid { gap: 10px; }
+  .metric-grid .MuiCardContent-root { padding: 17px; }
+  .page-heading { align-items: flex-start; }
+  .page-heading .MuiButton-root { flex: 0 0 auto; }
+  .donut-layout { grid-template-columns: 1fr; }
+  .legend-list { padding: 0 15px 10px; }
+  .footer { padding: 0 16px; }
+}
+@media (max-width: 450px) {
+  .metric-grid { grid-template-columns: 1fr; }
+  .page-heading { flex-direction: column; }
+  .page-heading .MuiButton-root { align-self: flex-start; }
+}

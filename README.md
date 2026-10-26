@@ -26,16 +26,16 @@ flowchart LR
 
 ## Technology Stack
 
-Java 21, Spring Boot 3.3, Maven, Spring Data JPA, MySQL 8, Jakarta Validation, Spring Retry, Lombok, Micrometer/Actuator, JUnit 5, and H2 for integration tests.
+Java 25 (LTS), Spring Boot 3.5, Maven, Spring Data JPA, MySQL 8, Jakarta Validation, Spring Retry, Lombok, Micrometer/Actuator, JUnit 5, and H2 for integration tests.
 
 ## How to Run
 
-Prerequisites: JDK 21, Maven 3.9+, Docker Engine and Docker Compose.
+Prerequisites: JDK 25, Maven 3.9+, Docker Engine and Docker Compose.
 
 1. Start Docker Desktop with its Linux engine running.
-2. From the project root in PowerShell, run `.\deploy.ps1`. This creates a Git-ignored `.env` with random local database credentials and starts the MySQL, application, and Adminer services.
+2. From the project root in PowerShell, run `.\deploy.ps1`. This creates a Git-ignored `.env` with random local database credentials and starts the MySQL, application, dashboard, and Adminer services.
 3. Wait for MySQL and application health checks to pass.
-4. Open `http://localhost:8080/actuator/health`. Adminer is available at `http://localhost:8081`.
+4. Open the report operations dashboard at `http://localhost:3000`. The API health endpoint is at `http://localhost:8080/actuator/health`, and Adminer is available at `http://localhost:8081`.
 5. Stop with `docker compose down`. Persisted local database data is retained in the `mysql-data` volume; `docker compose down --volumes` removes it.
 
 The application runs on port 8080. Compose uses MySQL database `pocdb`, application user `pocuser`, and ports bound to loopback only. Database connection settings are configurable using `DB_URL`, `DB_USERNAME`, and `DB_PASSWORD`. `MAX_RETRIES` defaults to 3. Compose credentials are generated locally and stored in the ignored `.env`; configure managed secrets externally before any shared deployment.
@@ -58,6 +58,12 @@ In Compose, the MySQL image creates `pocdb` and `pocuser` on first initializatio
 CSV and JSON examples are in `samples/`. Submit JSON records individually to `POST /api/jobs/attempts`; the API validates and persists each attempt. CSV ingestion is intentionally left to the upstream importer rather than adding a second parsing interface.
 
 ## API Examples
+
+### Dashboard
+
+The React dashboard uses the existing jobs, metrics, undelivered-report, unknown-status, and Actuator health endpoints. In Docker Compose, Nginx proxies API requests to the Spring Boot service over the private Compose network, so the browser only needs access to port 3000. The dashboard does not show customer or revenue metrics because this service has no customer/order APIs.
+
+To build the dashboard outside Docker, run `npm ci` and `npm run build` from the `dashboard/` directory. For local UI development, use `npm run dev`; Vite proxies API and Actuator requests to `http://localhost:8080`. To deploy or rebuild the dashboard service alone with Docker Desktop, run `docker compose up --build --detach dashboard` from the project root. The dashboard is served at `http://localhost:3000`.
 
 ### Inspect undelivered reports
 

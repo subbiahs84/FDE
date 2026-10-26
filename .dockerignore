@@ -8,6 +8,8 @@
 .env.*
 target
 **/target
+dashboard/node_modules
+dashboard/dist
 *.log
 README.md
 SOLUTION_DESIGN.md

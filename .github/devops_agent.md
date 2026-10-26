@@ -76,7 +76,7 @@ Generate production-grade Docker artifacts:
 
 Requirements:
 
-- Use Eclipse Temurin JDK 21
+- Use Eclipse Temurin JDK 25 (LTS)
 - Multi-stage build
 - Small image size
 - Production-ready configuration

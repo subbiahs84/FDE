@@ -49,7 +49,7 @@ TECHNICAL ENVIRONMENT
  
 Use:
  
-- Java 21
+- Java 25 (LTS)
 - Spring Boot 3.x
 - Maven
 - MySQL

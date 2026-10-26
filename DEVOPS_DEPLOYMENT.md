@@ -2,7 +2,7 @@
 
 ## Application summary
 
-- **Architecture:** Java 21, Spring Boot 3.3, Maven, Spring MVC, Spring Data JPA, MySQL 8.4, Spring Retry, Jakarta Validation, and Micrometer/Actuator.
+- **Architecture:** Java 25 (LTS), Spring Boot 3.5, Maven, Spring MVC, Spring Data JPA, MySQL 8.4, Spring Retry, Jakarta Validation, and Micrometer/Actuator.
 - **Layers:** controllers and DTOs, application services, classifier, repositories, JPA entities, configuration, and exception handling.
 - **Database:** MySQL database `pocdb`, application user `pocuser`, persistent named volume `mysql-data`. `schema.sql` creates the tables and indexes; `data.sql` seeds classification mappings and demonstration attempts during application startup.
 - **External integration:** none. Retry requests are stored for a report-runner handoff; they do not execute report generation.
@@ -13,9 +13,9 @@
 
 ## Prerequisites and build
 
-Install Docker Desktop for Windows and ensure its Linux engine is running. The Docker build uses Maven with Eclipse Temurin 21 and packages the application in a multi-stage image.
+Install Docker Desktop for Windows and ensure its Linux engine is running. The Docker build uses Maven with Eclipse Temurin 25 and packages the application in a multi-stage image.
 
-Optional local Maven verification, if Maven 3.9+ and JDK 21 are installed:
+Optional local Maven verification, if Maven 3.9+ and JDK 25 are installed:
 
 ```powershell
 mvn test

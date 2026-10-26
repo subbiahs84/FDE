@@ -22,3 +22,14 @@ INSERT IGNORE INTO job_attempt
 ('TenantB', 'DailyReport', '2026-01-02 00:00:00', 2, 'SUCCESS', NULL, '2026-01-02 00:03:00'),
 ('TenantC', 'WeeklyReport', '2026-01-04 00:00:00', 1, 'TIMEOUT', 'GATEWAY_TIMEOUT', '2026-01-04 00:05:00'),
 ('TenantD', 'QuarterlyReport', '2026-01-05 00:00:00', 1, 'PROVIDER_PENDING', NULL, '2026-01-05 00:01:00');
+
+INSERT IGNORE INTO retry_history
+(job_attempt_id, retry_count, retry_status, retry_timestamp, detail)
+SELECT id, 1, 'SUCCEEDED', '2026-01-02 00:03:00',
+       'Sample retry completed successfully.'
+FROM job_attempt
+WHERE tenant_id = 'TenantB'
+  AND report_name = 'DailyReport'
+  AND schedule_time = '2026-01-02 00:00:00'
+  AND attempt_number = 1
+  AND status = 'FAILED';

@@ -100,6 +100,13 @@ class ReportReliabilityIntegrationTest {
                 .andExpect(jsonPath("$.retrySuccessRate").value(0.0));
     }
 
+    @Test
+    void exposesDatabaseComponentInActuatorHealth() throws Exception {
+        mvc.perform(get("/actuator/health"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.components.db.status").value("UP"));
+    }
+
     private com.meridian.reliability.entity.JobAttempt insert(String tenant, String report, LocalDateTime schedule,
                                                                int attemptNo, String status) {
         var job = new com.meridian.reliability.entity.JobAttempt();
