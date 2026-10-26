@@ -2,7 +2,9 @@ package com.meridian.reliability;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meridian.reliability.domain.Classification;
+import com.meridian.reliability.domain.RetryStatus;
 import com.meridian.reliability.entity.ClassificationRule;
+import com.meridian.reliability.entity.RetryHistory;
 import com.meridian.reliability.repository.ClassificationRuleRepository;
 import com.meridian.reliability.repository.JobAttemptRepository;
 import com.meridian.reliability.repository.RetryHistoryRepository;
@@ -107,6 +109,19 @@ class ReportReliabilityIntegrationTest {
                 .andExpect(jsonPath("$.components.db.status").value("UP"));
     }
 
+    @Test
+    void retrySuccessRateUsesOnlyCompletedRetryOutcomes() throws Exception {
+        var job = insert("TenantRate", "Report", LocalDateTime.of(2026, 1, 5, 0, 0), 1, "FAILED");
+        saveRetry(job, RetryStatus.SUCCEEDED, 1);
+        saveRetry(job, RetryStatus.FAILED, 2);
+        saveRetry(job, RetryStatus.REJECTED, 3);
+        saveRetry(job, RetryStatus.ACCEPTED, 4);
+
+        mvc.perform(get("/api/metrics"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.retrySuccessRate").value(0.5));
+    }
+
     private com.meridian.reliability.entity.JobAttempt insert(String tenant, String report, LocalDateTime schedule,
                                                                int attemptNo, String status) {
         var job = new com.meridian.reliability.entity.JobAttempt();
@@ -116,5 +131,14 @@ class ReportReliabilityIntegrationTest {
         job.setAttemptNumber(attemptNo);
         job.setStatus(status);
         return attempts.save(job);
+    }
+
+    private void saveRetry(com.meridian.reliability.entity.JobAttempt job, RetryStatus status, int retryCount) {
+        var retry = new RetryHistory();
+        retry.setJobAttempt(job);
+        retry.setRetryCount(retryCount);
+        retry.setRetryStatus(status);
+        retry.setRetryTimestamp(java.time.Instant.now());
+        retryHistory.save(retry);
     }
 }

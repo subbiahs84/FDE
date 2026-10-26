@@ -1,0 +1,8 @@
+Connect MySQL which is running in Docker Desktop
+-------------------------------------------
+Connect DB container teriminal, then follow below steps
+1. mysql -u root -p
+2. DB Root password- 7d2d921f919d0e256839d5103e0e52907a1ad3e0fe21d7b8faa7f2f43c89d63b
+3. Show databases;
+4. Use pocdb;
+5. show tables;
